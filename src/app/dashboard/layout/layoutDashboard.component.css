@@ -1,3 +1,69 @@
 :host {
   display: block;
 }
+/* General Reset */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f9;
+  color: #333;
+}
+
+/* Dashboard Container */
+.dashboard-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Header */
+.dashboard-header {
+  text-align: center;
+  padding: 20px;
+  background-color: #4f4dda;
+  color: white;
+  border-radius: 8px;
+}
+
+/* Content */
+.dashboard-content {
+  margin-top: 20px;
+}
+
+/* User Section */
+.user-section {
+  background: white;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+/* Stats Section */
+.stats-section {
+  display: flex;
+  gap: 20px;
+}
+
+/* Stat Card */
+.stat-card {
+  flex: 1;
+  background: white;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.stat-card h4 {
+  margin-bottom: 10px;
+  color: #4f4dda;
+}
+
+.stat-card p {
+  font-size: 24px;
+  font-weight: bold;
+}
+.--width{
+  width: 10%;
+}

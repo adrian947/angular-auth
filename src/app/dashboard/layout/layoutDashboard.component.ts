@@ -1,7 +1,12 @@
-import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
-
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  inject,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AuthService } from '../../../services/auth.service';
+import { AuthService } from '../../auth/services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-layout',
@@ -12,8 +17,14 @@ import { AuthService } from '../../../services/auth.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LayoutDashboardComponent {
-  private authService = inject( AuthService );
-  public currentUser = computed(() => this.authService.currentUser() );
+  private authService = inject(AuthService);
+  private router = inject(Router);
+  public currentUser = computed(() => this.authService.currentUser());
+
+  logout() {
+    this.authService.logout();
+    this.router.navigateByUrl('/auth/login');
+  }
 
   // constructor(private authService: AuthService) {}
   // get currentUser() {

@@ -1,5 +1,36 @@
-<h1>DashBoard</h1>
+<div class="dashboard-container">
+  <header class="dashboard-header">
+    <h1>DashBoard</h1>
+    <div class="container-login100-form-btn">
+      <div class="wrap-login100-form-btn --width">
+        <div class="login100-form-bgbtn"></div>
+        <button class="login100-form-btn" (click)="logout()">Logout</button>
+      </div>
+    </div>
+  </header>
 
-<h3>User</h3>
-<pre>{{ currentUser() | json}}</pre>
-
+  <div class="dashboard-content">
+    <div class="user-section">
+      <h3>User Information</h3>
+      <ul>
+        <li><strong>Name:</strong> {{ currentUser()?.name }}</li>
+        <li><strong>Email:</strong> {{ currentUser()?.email }}</li>
+        <li><strong>Status:</strong> {{ currentUser()?.isActive ? 'Active' : 'Inactive' }}</li>
+      </ul>
+    </div>
+    <div class="stats-section">
+      <div class="stat-card">
+        <h4>Total Sales</h4>
+        <p>1250</p>
+      </div>
+      <div class="stat-card">
+        <h4>New Users</h4>
+        <p>75</p>
+      </div>
+      <div class="stat-card">
+        <h4>Revenue</h4>
+        <p>$45,000</p>
+      </div>
+    </div>
+  </div>
+</div>
