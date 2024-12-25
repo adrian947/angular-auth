@@ -1,52 +1,42 @@
-import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { Component } from '@angular/core';
+
+import { Router } from '@angular/router';
 import {
+  ReactiveFormsModule,
   FormBuilder,
   FormGroup,
-  ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-
-import { HttpClientModule } from '@angular/common/http';
-import Swal from 'sweetalert2';
-import { Router } from '@angular/router';
 import { AuthService } from '../../../../services/auth.service';
+import { CommonModule } from '@angular/common';
+import Swal from 'sweetalert2';
 
 @Component({
-  selector: 'app-login-page',
+  selector: 'app-login',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule, HttpClientModule],
-  providers: [AuthService],
+  imports: [ReactiveFormsModule, CommonModule],
   templateUrl: './login-page.component.html',
-  styleUrl: './login-page.component.css',
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LoginPageComponent {
   loginForm: FormGroup;
+  error: string | null = null;
 
   constructor(
-    private fb: FormBuilder,
     private authService: AuthService,
     private router: Router,
+    private fb: FormBuilder
   ) {
     this.loginForm = this.fb.group({
-      email: ['adrian@gmail.com', [Validators.required, Validators.email]],
-      password: ['123123', [Validators.required, Validators.minLength(6)]],
+      email: ['', Validators.required],
+      password: ['', Validators.required],
     });
-  }
-
-  get currentUser() {
-    return this.authService.currentUser() ?? { name: 'dsadsa' };
   }
 
   login() {
     const { email, password } = this.loginForm.value;
     this.authService.login(email, password).subscribe({
-      next: (user) => {
-        console.log('🚀 ~ user:', user);
-        setTimeout(() => {
-          this.router.navigateByUrl('/dashboard');
-        }, 1000);
+      next: () => {
+        this.router.navigateByUrl('/dashboard');
       },
       error: (err) => {
         Swal.fire({

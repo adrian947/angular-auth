@@ -1,9 +1,12 @@
 import { computed, Injectable, signal } from '@angular/core';
 import { environment } from '../environments/environments';
 import { HttpClient } from '@angular/common/http';
-import { AuthStatus, User, LoginResponse } from '../app/auth/interfaces/auth.interfaces';
+import {
+  AuthStatus,
+  User,
+  LoginResponse,
+} from '../app/auth/interfaces/auth.interfaces';
 import { catchError, Observable, tap, throwError } from 'rxjs';
-
 
 @Injectable({
   providedIn: 'root',
@@ -13,7 +16,7 @@ export class AuthService {
 
   constructor(private http: HttpClient) {}
 
-  private _currentUser = signal<User | null>({name: 'pepe2'});
+  private _currentUser = signal<User | null>({ name: 'pepe2' });
   private _authStatus = signal<AuthStatus>(AuthStatus.checking);
 
   //! exponiendo data fuera del servicio
@@ -25,7 +28,6 @@ export class AuthService {
       .post<LoginResponse>(`${this.baseUrl}/auth/login`, { email, password })
       .pipe(
         tap((user) => {
-          console.log('Usuario autenticado:', user);
           this._currentUser.set(user.user);
           this._authStatus.set(AuthStatus.authenticated);
           localStorage.setItem('token', user.token);
@@ -38,5 +40,4 @@ export class AuthService {
         })
       );
   }
-
 }
