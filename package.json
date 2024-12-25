@@ -6,7 +6,8 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "set-envs": "node scripts/setEnvs.js"
   },
   "private": true,
   "dependencies": {
@@ -18,7 +19,9 @@
     "@angular/platform-browser": "^17.3.0",
     "@angular/platform-browser-dynamic": "^17.3.0",
     "@angular/router": "^17.3.0",
+    "dotenv": "^16.4.7",
     "rxjs": "~7.8.0",
+    "sweetalert2": "^11.15.3",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.3"
   },
